@@ -1,0 +1,4 @@
+https://github.com/aksonov/react-native-router-flux/blob/master/docs/v3/MINI_TUTORIAL.md
+https://stackoverflow.com/questions/39611634/how-to-pass-values-to-other-component-in-react-native-router-flux
+https://www.tutorialspoint.com/react_native/react_native_router.htm
+https://stackoverflow.com/questions/32461229/why-use-redux-over-facebook-flux
