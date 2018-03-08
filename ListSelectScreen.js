@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Switch,
-  Alert
+  Alert,
+  AsyncStorage
 } from 'react-native';
 
 class ListSelectScreen extends Component {
@@ -50,9 +51,17 @@ class ListSelectScreen extends Component {
     );
   }
   getItem = (item) => {
-    Alert.alert(item.title);
     console.log(item.title);
-    this.setState({ selected: item.title })
+    this.setState({ selected: item.title });
+    (async () => {
+      await this.storeElement();
+    })();
+  }
+  storeElement = async () => {
+    try {
+      await AsyncStorage.setItem('Register:selectedItem', this.state.selected);
+    } catch (error) {
+    }
   }
   render() {
     return (

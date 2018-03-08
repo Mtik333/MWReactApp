@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Switch, DatePickerAndroid } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Switch, DatePickerAndroid,AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux'; // New code
 
 class NumberDateScreen extends Component {
@@ -9,7 +9,22 @@ class NumberDateScreen extends Component {
     this.state = { number: 0 ,switch: false,newDate: ''};
   }
   handleSwitch = (value) => {
-    this.setState({ switch: value })
+    this.setState({ switch: value });
+    (async () => {
+      await this.storeSwitch();
+    })();
+  }
+  storeSwitch = async () => {
+    try {
+      await AsyncStorage.setItem('Register:updateDate', this.state.switch.toString());
+    } catch (error) {
+    }
+  }
+  storeName = async () => {
+    try {
+      await AsyncStorage.setItem('Register:date', this.state.newDate);
+    } catch (error) {
+    }
   }
   openAndroidDatePicker = async () => {
   try {
@@ -18,12 +33,15 @@ class NumberDateScreen extends Component {
       date: new Date()
     });
 	if(action == DatePickerAndroid.dateSetAction){
-	  var date = new Date(year, month, day);
+	    var date = new Date(year, month, day);
       console.log(year + ' ' + month + ' ' + day);
-	  console.log(date.toLocaleDateString());
-	  this.setState({
+	    console.log(date.toLocaleDateString());
+	    this.setState({
         newDate: date.toLocaleDateString()
       });
+      (async () => {
+        await this.storeName();
+      })();
     }
   } catch ({code, message}) {
     console.warn('Cannot open date picker', message);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, AsyncStorage, Button } from 'react-native';
 import { Actions } from 'react-native-router-flux'; // New code
 
 class TextInputScreen extends Component {
@@ -7,24 +7,37 @@ class TextInputScreen extends Component {
     super(props);
     this.state = { text: '' };
   }
-  
-  render(){
-	  return (
-		<View style={styles.container}>
-		  <Text
-			style={styles.welcome}
-			onPress={() => Actions.numberDate()} // New Code
-		  >
-			TextInputScreen
+
+  storeName = async () => {
+    try {
+      await AsyncStorage.setItem('Register:userName', this.state.text);
+    } catch (error) {
+    }
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text
+          style={styles.welcome}
+        >
+          TextInputScreen
+
 		  </Text>
-		  <TextInput
-		    style={{ color: "#000", height: 50, width: "50%", textAlign: this.props.center }}
-			placeholder="Name"
-			onChangeText={(text) => this.setState({text})}
-		  />
-      <Text>Your name is: {this.state.text}</Text>
-		</View>
-	  );
+        <TextInput
+          style={{ color: "#000", height: 50, width: "50%", textAlign: this.props.center }}
+          placeholder="Name"
+          onChangeText={(text) => this.setState({text})}
+        />
+        <Text>Your name is: {this.state.text}</Text>
+        <Button
+          onPress={() => { this.storeName() }}
+          title="Continue"
+          color="#1A237E"
+          accessibilityLabel="Continue"
+        />
+      </View>
+    );
   }
 }
 
