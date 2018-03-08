@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, DatePickerAndroid } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Switch, DatePickerAndroid } from 'react-native';
 import { Actions } from 'react-native-router-flux'; // New code
 
 class NumberDateScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { number: 0 ,newDate: ''};
+    this.state = { number: 0 ,switch: false,newDate: ''};
   }
-  
+  handleSwitch = (value) => {
+    this.setState({ switch: value })
+  }
   openAndroidDatePicker = async () => {
   try {
 	var newState = {};
@@ -42,14 +44,19 @@ class NumberDateScreen extends Component {
 			placeholder="Favourite number"
 			onChangeText={(number) => this.setState({number})}
 		  />
-		  <Text>{this.state.number}</Text>
+		  <Text>Your number is: {this.state.number}</Text>
 		  <Button
             onPress={this.openAndroidDatePicker}
             title="Continue"
             color="#1A237E"
             accessibilityLabel="Continue"
           />
-		  <Text>{this.state.newDate}</Text>
+		  <Text>Your date is: {this.state.newDate}</Text>
+      <Switch
+          style={{ alignContent: 'flex-start', margin: 100 }}
+          onValueChange={this.handleSwitch}
+          value={this.state.switch} />
+          <Text style={{ color: "#000", textAlign: this.props.center }}>{this.state.switch.toString()}</Text>
 		</View>
 	  );
 	}

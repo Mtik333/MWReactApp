@@ -22,6 +22,7 @@ class TextInputScreen extends Component {
 			placeholder="Name"
 			onChangeText={(text) => this.setState({text})}
 		  />
+      <Text>Your name is: {this.state.text}</Text>
 		</View>
 	  );
   }
