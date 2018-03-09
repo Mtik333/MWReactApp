@@ -57,16 +57,9 @@ class NumberDateScreen extends Component {
 		  >
 			NumberDateScreen
 		  </Text>
-		  <TextInput
-		    style={{ color: "#000", height: 50, width: "50%", textAlign: this.props.center }}
-			keyboardType='numeric'
-			placeholder="Favourite number"
-			onChangeText={(number) => this.setState({number})}
-		  />
-		  <Text>Your number is: {this.state.number}</Text>
 		  <Button
             onPress={this.openAndroidDatePicker}
-            title="Continue"
+            title="Pick date"
             color="#1A237E"
             accessibilityLabel="Continue"
           />
@@ -75,7 +68,13 @@ class NumberDateScreen extends Component {
           style={{ alignContent: 'flex-start', margin: 100 }}
           onValueChange={this.handleSwitch}
           value={this.state.switch} />
-          <Text style={{ color: "#000", textAlign: this.props.center }}>{this.state.switch.toString()}</Text>
+      <Text style={{ color: "#000", textAlign: this.props.center }}>{this.state.switch.toString()}</Text>
+      <Button
+          onPress={() => { Actions.List() }}
+          title="Save & Go to Next"
+          color="#1A237E"
+          accessibilityLabel="Continue"
+        />
 		</View>
 	  );
 	}

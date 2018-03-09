@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View} from 'react-native';
-//import { Provider, connect } from 'react-redux';
-//import { createStore } from 'redux';
+import { Text } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 
+// New Imports
 import TextInputScreen from './TextInputScreen';
 import NumberDateScreen from './NumberDateScreen';
 import ListSelectScreen from './ListSelectScreen';
 import SummaryScreen from './SummaryScreen';
-
+// Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
   return (
     <Text style={{color: selected ? 'red' :'black'}}>{title}</Text>
@@ -33,27 +32,31 @@ const App = () => {
               title="Text Input"
             />
           </Scene>
-		  <Scene key="Number/Date" title="Number/Date" icon={TabIcon}>
-            <Scene
+
+          <Scene key="NumberDate" title="Number Date" icon={TabIcon}>
+            <Scene 
               key="numberDate"
               component={NumberDateScreen}
-              title="Number & Date"
+              title="Number Date"
             />
-		  </Scene>
-		  <Scene key="List" title="List" icon={TabIcon}>
-            <Scene
+          </Scene>
+
+          <Scene key="List" title="List" icon={TabIcon}>
+            <Scene 
               key="list"
               component={ListSelectScreen}
-              title="List Choice"
+              title="List"
             />
-		  </Scene>
-		  <Scene key="Summary" title="Summary" icon={TabIcon}>
-            <Scene
+          </Scene>
+
+          <Scene key="Summary" title="Summary" icon={TabIcon}>
+            <Scene 
               key="summary"
               component={SummaryScreen}
               title="Summary"
             />
-		  </Scene>
+          </Scene>
+
         </Scene>
       </Scene>
     </Router>

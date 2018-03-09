@@ -81,6 +81,12 @@ class ListSelectScreen extends Component {
             </Text>
               </TouchableOpacity > }
         />
+        <Button
+          onPress={() => { Actions.Summary() }}
+          title="Save & Go to Summary"
+          color="#1A237E"
+          accessibilityLabel="Continue"
+        />
         </View>
     );
   }

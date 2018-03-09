@@ -13,6 +13,7 @@ class TextInputScreen extends Component {
       await AsyncStorage.setItem('Register:userName', this.state.text);
     } catch (error) {
     }
+    Actions.NumberDate();
   }
 
   render() {
@@ -32,7 +33,7 @@ class TextInputScreen extends Component {
         <Text>Your name is: {this.state.text}</Text>
         <Button
           onPress={() => { this.storeName() }}
-          title="Continue"
+          title="Save & Go to Next"
           color="#1A237E"
           accessibilityLabel="Continue"
         />

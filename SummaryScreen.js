@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  AsyncStorage
+  AsyncStorage,
+  Button
 } from 'react-native';
 import { Actions } from 'react-native-router-flux'; // New code
 
@@ -49,6 +50,25 @@ class SummaryScreen extends Component {
           <Text>Selected date: {this.registerData.date}</Text>
           <Text>Auto update date form server?: {this.registerData.updateDate}</Text>
           <Text>Selected country: {this.registerData.selectedItem}</Text>
+          <Button
+          onPress={() => { Actions.Text() }}
+          title="Go to Text Screen"
+          color="#1A237E"
+          accessibilityLabel="Continue"
+        />
+        <Button
+          onPress={() => { Actions.NumberDate() }}
+          title="Go to Number & Date Screen"
+          color="#1A237E"
+          accessibilityLabel="Continue"
+        />
+        <Button
+          onPress={() => { Actions.List() }}
+          title="Go to List Screen"
+          color="#1A237E"
+          accessibilityLabel="Continue"
+        />
+
       </View>
     );
   }
