@@ -6,17 +6,18 @@ class NumberDateScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { number: 0 ,switch: false,newDate: ''};
+    this.state = { number: 0 , switch: true, newDate: ''};
   }
   handleSwitch = (value) => {
     this.setState({ switch: value });
     (async () => {
-      await this.storeSwitch();
+      await this.storeSwitch(value);
     })();
   }
-  storeSwitch = async () => {
+  storeSwitch = async (value) => {
     try {
-      await AsyncStorage.setItem('Register:updateDate', this.state.switch.toString());
+      console.log(this.switch);
+      await AsyncStorage.setItem('Register:updateDate', value.toString());
     } catch (error) {
     }
   }

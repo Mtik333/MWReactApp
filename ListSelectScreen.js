@@ -6,18 +6,21 @@ import {
   FlatList,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  TouchableHighlight,
   Switch,
   Alert,
-  AsyncStorage
+  AsyncStorage,
+  Button
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import App from './App';
 
 class ListSelectScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selected: '',
-      newDate: '',
+      myItem: '',
       myData: [
         { key: 1, title: "One" },
         { key: 2, title: "Two" },
@@ -35,7 +38,7 @@ class ListSelectScreen extends Component {
         { key: 14, title: "Fourteen" },
         { key: 15, title: "Fifteen" },
         { key: 16, title: "Sixteen" },
-      ]
+      ],
     };
   }
 
@@ -50,20 +53,14 @@ class ListSelectScreen extends Component {
       />
     );
   }
-  getItem = (item) => {
-    console.log(item.title);
-    this.setState({ selected: item.title });
-    (async () => {
-      await this.storeElement();
-    })();
-  }
-  storeElement = async () => {
+  storeListElem = async (item) => {
     try {
-      await AsyncStorage.setItem('Register:selectedItem', this.state.selected);
+      await AsyncStorage.setItem('Register:selectedItem', item.title);
     } catch (error) {
     }
   }
   render() {
+    const textColor = this.props.selected ? "red" : "black";
     return (
       <View style={styles.MainContainer}>
         <Text
@@ -76,8 +73,13 @@ class ListSelectScreen extends Component {
           data={this.state.myData}
           ItemSeparatorComponent = {this.flatListItemSeparator}
           renderItem={({ item }) =>
-            <Text style={styles.item} onPress={this.getItem.bind(this, item)}> {item.key}|{item.title}
-            </Text>}
+            <TouchableOpacity 
+            style={[styles.touchStyle]}
+            onPress={this.storeListElem.bind(this,item) }
+            >
+              <Text style={styles.item}> {item.key}|{item.title}
+            </Text>
+              </TouchableOpacity > }
         />
         </View>
     );
@@ -105,7 +107,12 @@ const styles = StyleSheet.create({
   item: {
     padding: 10,
     fontSize: 18,
-    height: 44,
+    height: 44
+  },
+  touchStyle: {
+    alignItems: 'flex-start',
+    backgroundColor: '#DDDDDD',
+    padding: 10
   },
 });
 

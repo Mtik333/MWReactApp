@@ -13,21 +13,7 @@ class SummaryScreen extends Component {
     this.state = {
       loaded: 'false',
     };
-    // console.log("WTFcon");
-    // this.loadAsync();
   }
-  // componentDidMount() {
-  //   console.log("WTFDid");
-  //   this.loadAsync();
-  // }
-  // componentWillUnmount(){
-  //   console.log("WTFunm");
-  //   this.loadAsync();
-  // }
-  // componentWillMount(){
-  //   console.log("WTFwill");
-  //   this.loadAsync();
-  // }
   registerData = {
     userName: "Tu",
     date: "10/04/2010",
