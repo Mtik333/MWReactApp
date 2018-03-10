@@ -52,29 +52,29 @@ class NumberDateScreen extends Component {
   render(){
 	  return (
 		<View style={styles.container}>
-		  <Text
-			style={styles.welcome}
-		  >
-			NumberDateScreen
-		  </Text>
+      <View style={{flex: 1, marginTop: 20}}>
 		  <Button
             onPress={this.openAndroidDatePicker}
             title="Pick date"
             color="#1A237E"
             accessibilityLabel="Continue"
           />
-		  <Text>Your date is: {this.state.newDate}</Text>
+          </View>
+      <Text style={{ color: 'white', fontSize: 20, marginTop: 15, textAlign: this.props.center }}>Are you a robot?</Text>
       <Switch
-          style={{ alignContent: 'flex-start', margin: 100 }}
+          style={{ margin: 10}}
           onValueChange={this.handleSwitch}
           value={this.state.switch} />
-      <Text style={{ color: "#000", textAlign: this.props.center }}>{this.state.switch.toString()}</Text>
+      <Text style={{ color: 'white', fontSize: 20, marginTop: 15, textAlign: this.props.center }}>{this.state.switch.toString()}</Text>
+      <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 20}}>
       <Button
           onPress={() => { Actions.List() }}
+          theme='dark'
+          backgroundColor="#767653"
           title="Save & Go to Next"
-          color="#1A237E"
           accessibilityLabel="Continue"
         />
+      </View>
 		</View>
 	  );
 	}

@@ -10,7 +10,8 @@ import {
   Switch,
   Alert,
   AsyncStorage,
-  Button
+  Button,
+  ToastAndroid
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import App from './App';
@@ -58,18 +59,17 @@ class ListSelectScreen extends Component {
       await AsyncStorage.setItem('Register:selectedItem', item.title);
     } catch (error) {
     }
+    ToastAndroid.show(
+      'Great choice',
+      ToastAndroid.SHORT
+    );
   }
   render() {
     const textColor = this.props.selected ? "red" : "black";
     return (
-      <View style={styles.MainContainer}>
-        <Text
-          style={styles.welcome}
-        >
-          ListSelectScreen
-       </Text>
-       <Text style={{ color: "#000", textAlign: this.props.center }}>You chosen: {this.state.selected}</Text>
+      <View style={styles.container}>
         <FlatList
+          style={{ width: "100%", height: "100%", }}
           data={this.state.myData}
           ItemSeparatorComponent = {this.flatListItemSeparator}
           renderItem={({ item }) =>
@@ -77,17 +77,20 @@ class ListSelectScreen extends Component {
             style={[styles.touchStyle]}
             onPress={this.storeListElem.bind(this,item) }
             >
-              <Text style={styles.item}> {item.key}|{item.title}
+              <Text style={styles.item}> {item.key}: {item.title}
             </Text>
               </TouchableOpacity > }
         />
-        <Button
-          onPress={() => { Actions.Summary() }}
-          title="Save & Go to Summary"
-          color="#1A237E"
-          accessibilityLabel="Continue"
-        />
-        </View>
+        <View style={{justifyContent: 'flex-end', paddingTop: 5, marginBottom: 20}}>
+            <Button
+              onPress={() => { Actions.Summary() }}
+              title="Save & Go to Summary"
+              theme='dark'
+              backgroundColor="#767653"
+              accessibilityLabel="Continue"
+            />
+          </View>
+      </View>
     );
   }
 }
@@ -107,8 +110,7 @@ const styles = StyleSheet.create({
   },
   MainContainer: {
     justifyContent: 'center',
-    flex: 1,
-    margin: 10
+    marginBottom: 10
   },
   item: {
     padding: 10,

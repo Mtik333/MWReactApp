@@ -19,24 +19,20 @@ class TextInputScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text
-          style={styles.welcome}
-        >
-          TextInputScreen
-
-		  </Text>
         <TextInput
-          style={{ color: "#000", height: 50, width: "50%", textAlign: this.props.center }}
-          placeholder="Name"
+          style={{ borderColor: 'gray', borderWidth: 1, color: 'white', height: 50, width: "50%", marginTop: 20, textAlign: this.props.center, fontSize: 20, marginBottom: 20 }}
+          placeholder="Enter your name"
           onChangeText={(text) => this.setState({text})}
         />
-        <Text>Your name is: {this.state.text}</Text>
+        <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 20}}>
         <Button
           onPress={() => { this.storeName() }}
           title="Save & Go to Next"
-          color="#1A237E"
+          theme='dark'
+          backgroundColor="#767653"
           accessibilityLabel="Continue"
         />
+        </View>
       </View>
     );
   }
