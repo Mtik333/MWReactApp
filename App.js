@@ -33,11 +33,11 @@ const App = () => {
             />
           </Scene>
 
-          <Scene key="NumberDate" title="Number Date" icon={TabIcon}>
+          <Scene key="NumberDate" title="Date" icon={TabIcon}>
             <Scene 
               key="numberDate"
               component={NumberDateScreen}
-              title="Number Date"
+              title="Date"
             />
           </Scene>
 

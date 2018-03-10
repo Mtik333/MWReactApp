@@ -26,7 +26,7 @@ class SummaryScreen extends Component {
     this.registerData.date = await AsyncStorage.getItem('Register:date');
     this.registerData.updateDate = await AsyncStorage.getItem('Register:updateDate');
     this.registerData.selectedItem = await AsyncStorage.getItem('Register:selectedItem');
-  
+
     try {
       if (this.selectedItem !== null) {
         this.setState({ loaded: 'true' });
@@ -34,7 +34,7 @@ class SummaryScreen extends Component {
     } catch (error) {
     }
   }
-  render(){
+  render() {
     (async () => {
       await this.loadAsync();
     })();
@@ -43,32 +43,66 @@ class SummaryScreen extends Component {
         <Text
           style={styles.welcome}
         >
-          SummaryScreen
+          Summary
         </Text>
-        <Text>Summary</Text>
-          <Text>You are: {this.registerData.userName}</Text>
-          <Text>Selected date: {this.registerData.date}</Text>
-          <Text>Auto update date form server?: {this.registerData.updateDate}</Text>
-          <Text>Selected country: {this.registerData.selectedItem}</Text>
+        <Text style={styles.textStyle}>Hello {this.registerData.userName}</Text>
+        <Text style={styles.textStyle}>Picked date: {this.registerData.date}</Text>
+        <Text style={styles.textStyle}>Are you a robot?: {this.registerData.updateDate}</Text>
+        <Text style={styles.textStyle}>Selected number: {this.registerData.selectedItem}</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            paddingHorizontal: 15,
+            paddingTop: 10,
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+          <Text style={{color: '#ffffff', textAlign: "center", flex: 1, flexWrap: 'wrap'}}>Want to change name?</Text>
           <Button
-          onPress={() => { Actions.Text() }}
-          title="Go to Text Screen"
-          color="#1A237E"
-          accessibilityLabel="Continue"
-        />
-        <Button
+            onPress={() => { Actions.Text() }}
+            title="Go to Text Screen"
+            theme='dark'
+          backgroundColor="#767653"
+            accessibilityLabel="Continue"
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            paddingHorizontal: 15,
+            paddingTop: 10,
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+          <Text style={{color: '#ffffff', textAlign: "center", flex: 1, flexWrap: 'wrap'}}>Want to change date?</Text>
+          <Button
           onPress={() => { Actions.NumberDate() }}
-          title="Go to Number & Date Screen"
-          color="#1A237E"
+          title="Go to Date Screen"
+          theme='dark'
+          backgroundColor="#767653"
           accessibilityLabel="Continue"
         />
-        <Button
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            paddingHorizontal: 15,
+            paddingTop: 10,
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+          <Text style={{color: '#ffffff', textAlign: "center", flex: 1, flexWrap: 'wrap'}}>Want to change number?</Text>
+          <Button
           onPress={() => { Actions.List() }}
           title="Go to List Screen"
-          color="#1A237E"
+          theme='dark'
+          backgroundColor="#767653"
           accessibilityLabel="Continue"
         />
-
+        </View>
       </View>
     );
   }
@@ -84,6 +118,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    color: '#ffffff',
+  },
+  textStyle: {
+    fontSize: 20,
     color: '#ffffff',
   },
 });
