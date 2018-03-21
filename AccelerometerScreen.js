@@ -61,6 +61,7 @@ class AccelerometerScreen extends Component {
             <Text>Fast</Text>
           </TouchableOpacity>
         </View>
+        <Text>{Math.atan2(y, x) * (180 / Math.PI)}</Text>
       </View>
     );
   }

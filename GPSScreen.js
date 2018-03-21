@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import Permissions from 'react-native-permissions';
 
 class GPSScreen extends Component {
   constructor(props) {
@@ -11,10 +12,17 @@ class GPSScreen extends Component {
       latitude: null,
       longitude: null,
       error: null,
+      locationPermission: '',
     };
   }
 
   componentDidMount() {
+    Permissions.check('location').then(response => {
+      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+      this.setState({ locationPermission: response });
+      console.log(locationPermission);
+    });
+
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
         this.setState({

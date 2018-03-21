@@ -10,11 +10,13 @@ import {
   Button
 } from 'react-native';
 
+
 class MagnetometerScreen extends Component {
   state = {
     MagnetometerData: {},
   }
 
+  
   componentDidMount() {
     this._toggle();
   }
@@ -55,8 +57,9 @@ class MagnetometerScreen extends Component {
   test = () => {
       let { x, y, z } = this.state.MagnetometerData;
       console.log(this.state.MagnetometerData.x);
-
+      console.log(Math.atan2(this.state.MagnetometerData.y, this.state.MagnetometerData.x));
   }
+  
   render() {
     let { x, y, z } = this.state.MagnetometerData;
 
@@ -75,14 +78,11 @@ class MagnetometerScreen extends Component {
           <TouchableOpacity onPress={this._fast} style={styles.button}>
             <Text>Fast</Text>
           </TouchableOpacity>
-          <Button
-          onPress={() => { this.test() }}
-            theme='dark'
-            backgroundColor="#767653"
-            title="Save & Go to Next"
-            accessibilityLabel="Continue"
-            />
         </View>
+        <Text>{Math.atan2(y, x) * (180 / Math.PI)}</Text>
+        <Text>{(Math.atan2(y, x)+(4+(26/60)/(180/Math.PI))) * (180 / Math.PI)}</Text>
+        <Text>{90 - Math.atan2(x, y) * (180 / Math.PI)}</Text>
+        <Text>{270 - Math.atan2(x, y) * (180 / Math.PI)}</Text>
       </View>
     );
   }
