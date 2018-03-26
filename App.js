@@ -3,9 +3,9 @@ import { Text } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 
 // New Imports
-import GPSScreen from './GPSScreen';
-import MagnetometerScreen from './MagnetometerScreen';
-import AccelerometerScreen from './AccelerometerScreen';
+import TextInputScreen from './TextInputScreen';
+import NumberDateScreen from './NumberDateScreen';
+import ListSelectScreen from './ListSelectScreen';
 import SummaryScreen from './SummaryScreen';
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
@@ -25,28 +25,35 @@ const App = () => {
           tabBarStyle={{ backgroundColor: '#FFFFFF' }}
         >
           {/* Tab and it's scenes */}
-          
-          <Scene key="GPS" title="GPS" icon={TabIcon}>
+          <Scene key="Text" title="Text" icon={TabIcon}>
             <Scene 
-              key="GPS"
-              component={GPSScreen}
-              title="GPS Screen"
+              key="textInput"
+              component={TextInputScreen}
+              title="Text Input"
             />
           </Scene>
 
-          <Scene key="Accelerometer" title="Accelerometer" icon={TabIcon}>
+          <Scene key="NumberDate" title="Date" icon={TabIcon}>
             <Scene 
-              key="Accelerometer"
-              component={AccelerometerScreen}
-              title="Accelerometer"
+              key="numberDate"
+              component={NumberDateScreen}
+              title="Date"
             />
           </Scene>
 
-          <Scene key="Magnetometer" title="Magnetometer" icon={TabIcon}>
+          <Scene key="List" title="List" icon={TabIcon}>
             <Scene 
-              key="Magnetometer"
-              component={MagnetometerScreen}
-              title="Magnetometer"
+              key="list"
+              component={ListSelectScreen}
+              title="List"
+            />
+          </Scene>
+
+          <Scene key="Summary" title="Summary" icon={TabIcon}>
+            <Scene 
+              key="summary"
+              component={SummaryScreen}
+              title="Summary"
             />
           </Scene>
 

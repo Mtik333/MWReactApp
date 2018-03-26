@@ -45,7 +45,7 @@ class MagnetometerScreen extends Component {
       console.log('aaa');
     this._subscription = Magnetometer.addListener((result) => {
       this.setState({MagnetometerData: result});
-      console.log(result);
+      //console.log(result);
     });
   }
 
@@ -56,8 +56,8 @@ class MagnetometerScreen extends Component {
 
   test = () => {
       let { x, y, z } = this.state.MagnetometerData;
-      console.log(this.state.MagnetometerData.x);
-      console.log(Math.atan2(this.state.MagnetometerData.y, this.state.MagnetometerData.x));
+      //console.log(this.state.MagnetometerData.x);
+      //console.log(Math.atan2(this.state.MagnetometerData.y, this.state.MagnetometerData.x));
   }
   
   render() {
@@ -80,14 +80,20 @@ class MagnetometerScreen extends Component {
           </TouchableOpacity>
         </View>
         <Text>{Math.atan2(y, x) * (180 / Math.PI)}</Text>
-        <Text>{(Math.atan2(y, x)+(4+(26/60)/(180/Math.PI))) * (180 / Math.PI)}</Text>
-        <Text>{90 - Math.atan2(x, y) * (180 / Math.PI)}</Text>
-        <Text>{270 - Math.atan2(x, y) * (180 / Math.PI)}</Text>
+        <Text>{getDegree(y,x)}</Text>
       </View>
     );
   }
 }
 export default MagnetometerScreen;
+function getDegree(y,x){
+	var value = Math.atan2(y, x) * (180 / Math.PI);
+	if (value<0){
+		value=180-value;
+	}
+	return value;
+}
+
 function round(n) {
   if (!n) {
     return 0;
