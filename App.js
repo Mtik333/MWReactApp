@@ -3,9 +3,9 @@ import { Text } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 
 // New Imports
-import TextInputScreen from './TextInputScreen';
-import NumberDateScreen from './NumberDateScreen';
-import ListSelectScreen from './ListSelectScreen';
+import GPSScreen from './GPSScreen';
+import MagnetometerScreen from './MagnetometerScreen';
+import AccelerometerScreen from './AccelerometerScreen';
 import SummaryScreen from './SummaryScreen';
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
@@ -25,35 +25,27 @@ const App = () => {
           tabBarStyle={{ backgroundColor: '#FFFFFF' }}
         >
           {/* Tab and it's scenes */}
-          <Scene key="Text" title="Text" icon={TabIcon}>
+          <Scene key="GPS" title="GPS" icon={TabIcon}>
             <Scene 
-              key="textInput"
-              component={TextInputScreen}
-              title="Text Input"
+              key="GPS"
+              component={GPSScreen}
+              title="GPS Screen"
             />
           </Scene>
 
-          <Scene key="NumberDate" title="Date" icon={TabIcon}>
+          <Scene key="Magnetometer" title="Magnetometer" icon={TabIcon}>
             <Scene 
-              key="numberDate"
-              component={NumberDateScreen}
-              title="Date"
+              key="Magnetometer"
+              component={MagnetometerScreen}
+              title="Magnetometer Screen"
             />
           </Scene>
 
-          <Scene key="List" title="List" icon={TabIcon}>
+          <Scene key="Accelerometer" title="Accelerometer" icon={TabIcon}>
             <Scene 
-              key="list"
-              component={ListSelectScreen}
-              title="List"
-            />
-          </Scene>
-
-          <Scene key="Summary" title="Summary" icon={TabIcon}>
-            <Scene 
-              key="summary"
-              component={SummaryScreen}
-              title="Summary"
+              key="Accelerometer"
+              component={AccelerometerScreen}
+              title="Accelerometer Screen"
             />
           </Scene>
 

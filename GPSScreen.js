@@ -12,16 +12,10 @@ class GPSScreen extends Component {
       latitude: null,
       longitude: null,
       error: null,
-      locationPermission: '',
     };
   }
 
   componentDidMount() {
-    Permissions.check('location').then(response => {
-      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-      this.setState({ locationPermission: response });
-      console.log(locationPermission);
-    });
 
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
