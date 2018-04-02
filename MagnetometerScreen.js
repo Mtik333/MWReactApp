@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import RNSimpleCompass from 'react-native-simple-compass';

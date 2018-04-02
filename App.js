@@ -3,10 +3,8 @@ import { Text } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 
 // New Imports
-import GPSScreen from './GPSScreen';
-import MagnetometerScreen from './MagnetometerScreen';
-import AccelerometerScreen from './AccelerometerScreen';
-import SummaryScreen from './SummaryScreen';
+import ListScreen from './ListScreen';
+//import NewsScreen from './NewsScreen';
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
   return (
@@ -25,29 +23,21 @@ const App = () => {
           tabBarStyle={{ backgroundColor: '#FFFFFF' }}
         >
           {/* Tab and it's scenes */}
-          <Scene key="GPS" title="GPS" icon={TabIcon}>
+          <Scene key="List" title="News list" icon={TabIcon}>
             <Scene 
-              key="GPS"
-              component={GPSScreen}
-              title="GPS Screen"
+              key="list"
+              component={ListScreen}
+              title="List Screen"
             />
           </Scene>
 
-          <Scene key="Magnetometer" title="Magnetometer" icon={TabIcon}>
+          {/* <Scene key="News" title="Picked news" icon={TabIcon}>
             <Scene 
-              key="Magnetometer"
-              component={MagnetometerScreen}
-              title="Magnetometer Screen"
+              key="News"
+              component={NewsScreen}
+              title="News Screen"
             />
-          </Scene>
-
-          <Scene key="Accelerometer" title="Accelerometer" icon={TabIcon}>
-            <Scene 
-              key="Accelerometer"
-              component={AccelerometerScreen}
-              title="Accelerometer Screen"
-            />
-          </Scene>
+          </Scene> */}
 
         </Scene>
       </Scene>
