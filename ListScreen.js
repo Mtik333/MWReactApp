@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ListView, ScrollView, TouchableHighlight, Async
 import { Actions } from 'react-native-router-flux';
 import Permissions from 'react-native-permissions';
 import moment from 'moment';
+import App from './App';
 var TOTAL_NEWS_ITEMS = 10;
 class ListScreen extends Component {
   constructor(props) {
@@ -47,7 +48,18 @@ class ListScreen extends Component {
       </TouchableHighlight>
     );
   }
+
+  storeName = async (url) => {
+    try {
+      await AsyncStorage.setItem('url', url);
+    } catch (error) {
+    }
+  }
+
   viewPage = (url) => {
+    this.storeName(url);
+    Actions.refresh();
+    Actions.News({url:url});
     //this.props.navigator.push({ name: 'web_page', url: url });
   }
 

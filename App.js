@@ -4,7 +4,7 @@ import { Router, Scene } from 'react-native-router-flux';
 
 // New Imports
 import ListScreen from './ListScreen';
-//import NewsScreen from './NewsScreen';
+import NewsScreen from './NewsScreen';
 // Simple component to render something in place of icon
 const TabIcon = ({ selected, title }) => {
   return (
@@ -31,13 +31,13 @@ const App = () => {
             />
           </Scene>
 
-          {/* <Scene key="News" title="Picked news" icon={TabIcon}>
+          <Scene key="News" title="Picked news" icon={TabIcon}>
             <Scene 
               key="News"
               component={NewsScreen}
               title="News Screen"
             />
-          </Scene> */}
+          </Scene>
 
         </Scene>
       </Scene>
