@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ListView, ScrollView, TouchableHighlight, AsyncStorage } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import Permissions from 'react-native-permissions';
 import moment from 'moment';
 import App from './App';
@@ -41,7 +40,7 @@ class ListScreen extends Component {
 
   renderNews = (news) => {
     return (
-      <TouchableHighlight onPress={this.viewPage.bind(this, news.url)} underlayColor={"#E8E8E8"} style={styles.button}>
+      <TouchableHighlight onPress={() => this.viewPage(news.url)} underlayColor={"#E8E8E8"} style={styles.button}>
         <View style={styles.news_item}>
           <Text style={styles.news_item_text}>{news.title}</Text>
         </View>
@@ -49,18 +48,8 @@ class ListScreen extends Component {
     );
   }
 
-  storeName = async (url) => {
-    try {
-      await AsyncStorage.setItem('url', url);
-    } catch (error) {
-    }
-  }
-
   viewPage = (url) => {
-    this.storeName(url);
-    Actions.refresh();
-    Actions.News({url:url});
-    //this.props.navigator.push({ name: 'web_page', url: url });
+    this.props.navigation.navigate('NewsScreen', { url });
   }
 
   updateNewsItemsUI = (news_items) => {

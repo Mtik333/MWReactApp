@@ -17,36 +17,12 @@ class NewsScreen extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      url: "https://medium.com/nanonets/how-to-easily-detect-objects-with-deep-learning-on-raspberrypi-225f29635c74"
     };
-  }
-  loadAsync = async () => {
-    this.state.url = await AsyncStorage.getItem('url');
   }
   truncate = (str) => {
     return lodash.truncate(str, 20);
   }
 
-  // componentWillMount(){
-  //   Actions.refresh({test:Math.random()});
-  //   console.log("aaa;"+this.props.url);
-  // }
-
-  // componentDidMount(){
-  //   Actions.refresh({test:Math.random()});
-  //   console.log("bbb;"+this.props.url);
-  // }
-
-  // componentWillUpdate(){
-  //   Actions.refresh({test:Math.random()});
-  //   console.log("ccc;"+this.props.url);
-  // }
-
-  // componentDidUpdate(){
-  //   Actions.refresh({test:Math.random()});
-  //   console.log("ddd;"+this.props.url);
-  // }
-  
   onNavigationStateChange = (navState) => {
     if(!navState.loading){
         this.setState({
@@ -56,14 +32,12 @@ class NewsScreen extends Component {
     }
   }
 
-  back(){
-    
+  back = () => {
+    this.props.navigation.navigate('ListScreen');
   }
 
   render() {
-    (async () => {
-      await this.loadAsync();
-    })();
+    const { url } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <View style={styles.webview_header}>
@@ -76,7 +50,7 @@ class NewsScreen extends Component {
         </View>
         <View style={styles.webview_body}>
           <WebView
-            url={this.state.url}
+            url={url}
             onNavigationStateChange={this.onNavigationStateChange}
           />
         </View>
