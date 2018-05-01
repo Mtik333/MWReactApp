@@ -4,8 +4,16 @@ import { Icon } from 'react-native-elements';
 
 import ListScreen from '../ListScreen';
 import NewsScreen from '../NewsScreen';
+import QueryDatabase from '../Zadanie4/QueryDatabase';
 
 export const NewsStack = StackNavigator({
+
+  QueryDatabase: {
+    screen: QueryDatabase,
+    navigationOptions: {
+      title: 'QueryDatabase',
+    },
+  },
   ListScreen: {
     screen: ListScreen,
     navigationOptions: {
@@ -20,7 +28,7 @@ export const NewsStack = StackNavigator({
   },
 });
 export const Tabs = TabNavigator({
-  ListScreen: {
+  QueryDatabase: {
     screen: NewsStack,
     navigationOptions: {
       tabBarLabel: 'Feed',

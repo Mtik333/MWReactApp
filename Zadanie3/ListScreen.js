@@ -3,11 +3,7 @@ import { View, Text, StyleSheet, ListView, ScrollView, TouchableHighlight, Async
 import Permissions from 'react-native-permissions';
 import moment from 'moment';
 import App from './App';
-import AppDB from './AppDB';
-
-let appDB = new AppDB();
 var TOTAL_NEWS_ITEMS = 10;
-
 class ListScreen extends Component {
   constructor(props) {
     super(props);
@@ -22,9 +18,6 @@ class ListScreen extends Component {
   }
 
   componentDidMount() {
-    console.log(appDB);
-    appDB._addItem();
-    console.log(appDB._getAll());
     AsyncStorage.getItem('news_items').then((news_items_str) => {
       var news_items = JSON.parse(news_items_str);
       if (news_items != null) {
@@ -108,7 +101,6 @@ class ListScreen extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.body}>
-          <Text>{appDB._getAll()[0].name}</Text>
           <ScrollView ref="scrollView">
             {
               this.state.loaded &&
@@ -116,7 +108,6 @@ class ListScreen extends Component {
             }
           </ScrollView>
         </View>
-
       </View>
     );
   }
