@@ -30,7 +30,7 @@ class CarsList extends Component {
         return (
           <TouchableHighlight onPress={() => this.viewPage(car)} underlayColor={"#FFFFFF"} style={styles.button}>
             <View style={styles.news_item}>
-              <Text style={styles.news_item_text}>{car.model} {car.manufacturer}</Text>
+              <Text style={styles.news_item_text}>{car.manufacturer} {car.model} </Text>
             </View>
           </TouchableHighlight>
         );
@@ -53,6 +53,11 @@ class CarsList extends Component {
               </View>
             );
         }
+        else return (
+            <View style={styles.container}>
+                    <Text style={styles.news_item_text}>No results</Text>
+              </View>
+        );
     }
 }
 

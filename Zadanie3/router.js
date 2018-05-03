@@ -27,7 +27,7 @@ export const NewsStack = StackNavigator({
     screen: CarsDetails,
     navigationOptions: ({ navigation }) => ({
       car: `${navigation.state.params.car}`,
-      title: new Date(`${navigation.state.params.car.year}`).getFullYear().toString()+' '+`${navigation.state.params.car.manufacturer}`+' '+`${navigation.state.params.car.model}`,
+      title: `${navigation.state.params.car.year}`+' '+`${navigation.state.params.car.manufacturer}`+' '+`${navigation.state.params.car.model}`,
     }),
   },
 });

@@ -8,7 +8,7 @@ class QueryDatabase extends Component {
         super(props);
         this.state = {
             text: '',
-            filter: { model: '', manufacturer: '' },
+            filter: { model: '', manufacturer: '', year: '' },
             items: appDB._getAll()
         };
     }
@@ -31,13 +31,22 @@ class QueryDatabase extends Component {
         return (
             <View style={{ flexDirection: 'row' }}>
                 <View style={styles.filter} >
-                    <Text>{arg}</Text>
+                    <Text>{arg.charAt(0).toUpperCase() + arg.slice(1)}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', flex: 1, height: 50 }}>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={(text) => this.setFilterValue(arg, text)}
-                        placeholder="Value" />
+                    {arg=='year' &&
+                        <TextInput
+                            style={styles.input}
+                            keyboardType='numeric'
+                            onChangeText={(text) => this.setFilterValue(arg, text)}
+                            placeholder="Value" />
+                    }
+                    {arg!='year' &&
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={(text) => this.setFilterValue(arg, text)}
+                            placeholder="Value" />
+                    }
                 </View>
             </View>
         );
@@ -45,7 +54,7 @@ class QueryDatabase extends Component {
 
 
     render() {
-        const data = ["Model", "Manufacturer"];
+        const data = ["manufacturer", "model", "year"];
         return (
             <View style={{
                 flex: 1,
@@ -63,7 +72,6 @@ class QueryDatabase extends Component {
                 <View style={styles.filter}>
                     <Button
                         onPress={() => { this.filterResults() }}
-                        //style={styles.button}
                         title="Filter"
                         theme='dark'
                         backgroundColor="#767653"
