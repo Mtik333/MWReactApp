@@ -5,25 +5,29 @@ import { Icon } from 'react-native-elements';
 import ListScreen from '../ListScreen';
 import NewsScreen from '../NewsScreen';
 import QueryDatabase from '../Zadanie4/QueryDatabase';
+import CarsList from '../Zadanie4/CarsList';
+import CarsDetails from '../Zadanie4/CarsDetails';
 
 export const NewsStack = StackNavigator({
 
   QueryDatabase: {
     screen: QueryDatabase,
     navigationOptions: {
-      title: 'QueryDatabase',
+      title: 'Filter entries in database',
     },
   },
-  ListScreen: {
-    screen: ListScreen,
-    navigationOptions: {
-      title: 'News',
-    },
-  },
-  NewsScreen: {
-    screen: NewsScreen,
+  CarsList:{
+    screen: CarsList,
     navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.url}`,
+      filter: `${navigation.state.params.filter}`,
+      title: 'List of entries',
+    }),
+  },
+  CarsDetails:{
+    screen: CarsDetails,
+    navigationOptions: ({ navigation }) => ({
+      car: `${navigation.state.params.car}`,
+      title: new Date(`${navigation.state.params.car.year}`).getFullYear().toString()+' '+`${navigation.state.params.car.manufacturer}`+' '+`${navigation.state.params.car.model}`,
     }),
   },
 });
@@ -31,7 +35,7 @@ export const Tabs = TabNavigator({
   QueryDatabase: {
     screen: NewsStack,
     navigationOptions: {
-      tabBarLabel: 'Feed',
+      tabBarLabel: 'DB Test',
       tabBarIcon: ({ tintColor }) => <Icon name="list" size={35} color={tintColor} />,
     },
   },

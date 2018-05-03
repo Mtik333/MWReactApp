@@ -6,26 +6,38 @@ let appDB = new AppDB();
 class QueryDatabase extends Component {
     constructor(props) {
         super(props);
-        this.state = { text: '' };
-    
+        this.state = {
+            text: '',
+            filter: { model: '', manufacturer: '' },
+            items: appDB._getAll()
+        };
     }
 
-    handleSwitch = (value) => {
-        this.setState({ switch: value });
-      }
+    setFilterValue(arg, text) {
+        this.state.filter[arg] = text;
+    }
+
+    componentDidMount() {
+        console.log(this.state.items);
+    }
+
+    filterResults = () => {
+        myFilter = this.state.filter;
+        this.props.navigation.navigate('CarsList', { myFilter });
+    }
+
 
     renderRow(arg) {
         return (
-            <View style={{ flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
-                <View style={{ flex: 1, alignSelf: 'stretch' }} >
-                <Text>{arg}</Text>
+            <View style={{ flexDirection: 'row' }}>
+                <View style={styles.filter} >
+                    <Text>{arg}</Text>
                 </View>
-                <View style={{ flex: 1, alignSelf: 'stretch' }}>
+                <View style={{ flexDirection: 'row', flex: 1, height: 50 }}>
                     <TextInput
-                    //style={{ borderColor: 'gray', borderWidth: 1, color: 'white', height: 50, width: "50%", marginTop: 20, textAlign: this.props.center, fontSize: 20, marginBottom: 20 }}
-                    placeholder="Enter your name"
-                    //onChangeText={(text) => this.setState({text})}
-                    />
+                        style={styles.input}
+                        onChangeText={(text) => this.setFilterValue(arg, text)}
+                        placeholder="Value" />
                 </View>
             </View>
         );
@@ -33,32 +45,72 @@ class QueryDatabase extends Component {
 
 
     render() {
-        const data=["prop1","prop2"];
+        const data = ["Model", "Manufacturer"];
         return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        {
-            data.map((datum) => {
-                return this.renderRow(datum);
-            })
-        }
-        </View>
+            <View style={{
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+            }}>
+                <View style={styles.input}>
+                    {
+                        data.map((datum) => {
+                            return this.renderRow(datum);
+                        })
+                    }
+                </View>
+                <View style={styles.filter}>
+                    <Button
+                        onPress={() => { this.filterResults() }}
+                        //style={styles.button}
+                        title="Filter"
+                        theme='dark'
+                        backgroundColor="#767653"
+                        accessibilityLabel="Filter"
+                    />
+                </View>
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    input: {
+        //flexDirection: 'row',
+        // height: 50,
+        width: "100%",
+        // textAlign: 'left'
+    },
+    filter: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50,
+        margin: 10,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 10,
+        paddingBottom: 10,
+    },
     container: {
-      flex: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      backgroundColor: '#bb0000',
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: '#bb0000',
     },
     welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
-      color: '#ffffff',
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
     },
-  });
+    button: {
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        margin: 20,
+        width: 50
+    },
+});
 
 export default QueryDatabase;
