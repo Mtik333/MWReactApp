@@ -3,6 +3,7 @@ package com.mwprojectright;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.zmxv.RNSound.RNSoundPackage;
 import io.realm.react.RealmReactPackage;
 import com.sensors.RNSensorsPackage;
 import com.reactlibrary.RNSimpleCompassPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSoundPackage(),
             new RealmReactPackage(),
             new RNSensorsPackage(),
             new RNSimpleCompassPackage()

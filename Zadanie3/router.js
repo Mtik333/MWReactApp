@@ -7,32 +7,47 @@ import NewsScreen from '../NewsScreen';
 import QueryDatabase from '../Zadanie4/QueryDatabase';
 import CarsList from '../Zadanie4/CarsList';
 import CarsDetails from '../Zadanie4/CarsDetails';
+import SongsList from '../Zadanie5/SongsList';
+import SongView from '../Zadanie5/SongView';
 
 export const NewsStack = StackNavigator({
 
-  QueryDatabase: {
-    screen: QueryDatabase,
-    navigationOptions: {
-      title: 'Filter entries in database',
+  SongsList:{
+    screen: SongsList,
+    navigationOptions:{
+      title: 'Test audio',
     },
   },
-  CarsList:{
-    screen: CarsList,
-    navigationOptions: ({ navigation }) => ({
-      filter: `${navigation.state.params.filter}`,
-      title: 'List of entries',
-    }),
-  },
-  CarsDetails:{
-    screen: CarsDetails,
+  SongView:{
+    screen: SongView,
     navigationOptions: ({ navigation }) => ({
       car: `${navigation.state.params.car}`,
-      title: `${navigation.state.params.car.year}`+' '+`${navigation.state.params.car.manufacturer}`+' '+`${navigation.state.params.car.model}`,
+      title: `${navigation.state.params.car.band}`+' - '+`${navigation.state.params.car.title}`,
     }),
   },
+  // QueryDatabase: {
+  //   screen: QueryDatabase,
+  //   navigationOptions: {
+  //     title: 'Filter entries in database',
+  //   },
+  // },
+  // CarsList:{
+  //   screen: CarsList,
+  //   navigationOptions: ({ navigation }) => ({
+  //     filter: `${navigation.state.params.filter}`,
+  //     title: 'List of entries',
+  //   }),
+  // },
+  // CarsDetails:{
+  //   screen: CarsDetails,
+  //   navigationOptions: ({ navigation }) => ({
+  //     car: `${navigation.state.params.car}`,
+  //     title: `${navigation.state.params.car.year}`+' '+`${navigation.state.params.car.manufacturer}`+' '+`${navigation.state.params.car.model}`,
+  //   }),
+  // },
 });
 export const Tabs = TabNavigator({
-  QueryDatabase: {
+  SongsList: {
     screen: NewsStack,
     navigationOptions: {
       tabBarLabel: 'DB Test',
