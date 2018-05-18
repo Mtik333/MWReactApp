@@ -4,9 +4,9 @@ import { Icon } from 'react-native-elements';
 
 import ListScreen from '../ListScreen';
 import NewsScreen from '../NewsScreen';
-import QueryDatabase from '../Zadanie4/QueryDatabase';
-import CarsList from '../Zadanie4/CarsList';
-import CarsDetails from '../Zadanie4/CarsDetails';
+// import QueryDatabase from '../Zadanie4/QueryDatabase';
+// import CarsList from '../Zadanie4/CarsList';
+// import CarsDetails from '../Zadanie4/CarsDetails';
 import SongsList from '../Zadanie5/SongsList';
 import SongView from '../Zadanie5/SongView';
 
@@ -21,8 +21,8 @@ export const NewsStack = StackNavigator({
   SongView:{
     screen: SongView,
     navigationOptions: ({ navigation }) => ({
-      car: `${navigation.state.params.car}`,
-      title: `${navigation.state.params.car.band}`+' - '+`${navigation.state.params.car.title}`,
+      song: `${navigation.state.params.song}`,
+      title: `${navigation.state.params.song.band}`+' - '+`${navigation.state.params.song.title}`,
     }),
   },
   // QueryDatabase: {

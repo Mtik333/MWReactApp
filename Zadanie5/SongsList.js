@@ -23,15 +23,15 @@ class SongsList extends Component{
         };
     }
 
-    viewPage = (car) => {
-        this.props.navigation.navigate('SongView', { car });
+    viewPage = (song) => {
+        this.props.navigation.navigate('SongView', { song });
     }
 
-    renderNews = (car) => {
+    renderNews = (song) => {
         return (
-          <TouchableHighlight onPress={() => this.viewPage(car)} underlayColor={"#FFFFFF"} style={styles.button}>
+          <TouchableHighlight onPress={() => this.viewPage(song)} underlayColor={"#FFFFFF"} style={styles.button}>
             <View style={styles.news_item}>
-              <Text style={styles.news_item_text}>{car.band}-{car.title} </Text>
+              <Text style={styles.news_item_text}>{song.band}-{song.title} </Text>
             </View>
           </TouchableHighlight>
         );
@@ -44,8 +44,8 @@ class SongsList extends Component{
                 <View style={styles.body}>
                   <ScrollView ref="scrollView">
                     {
-                        this.state.songs.map((car) => {
-                            return this.renderNews(car);
+                        this.state.songs.map((song) => {
+                            return this.renderNews(song);
                         })
                     }
                   </ScrollView>
