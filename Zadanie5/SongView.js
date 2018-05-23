@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, StyleSheet, Text, View, ScrollView, TextInput, AsyncStorage, Image, Button } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, ScrollView, TextInput, AsyncStorage, Image, Button, ToastAndroid } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 var Sound = require('react-native-sound');
 
@@ -62,6 +62,12 @@ class SongView extends Component {
                 });
                 this.audioState = AudioStatePlay;
                 this.playProgress();
+            } else{
+                ToastAndroid.showWithGravity(
+                    'No Internet connection, song cannot be streamed',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM
+                  );
             }
         });
     }
